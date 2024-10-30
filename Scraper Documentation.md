@@ -112,6 +112,7 @@ def main():
             # Process each event and associated fights to scrape detailed information
             for event_info in events_list:
                 print(f"\nEvent: {event_info['name']}")
+                print(f"Event Link: {event_info['link']}")
                 print(f"Date: {event_info['date']}")
                 print(f"Location: {event_info['location']}")
 
