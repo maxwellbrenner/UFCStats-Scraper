@@ -28,7 +28,7 @@ Each event’s individual page is then accessed to retrieve additional fight-lev
 
 For each event, the script extracts detailed information on each fight, iterating over all fight entries in the event. The fight details include:
 - **Fighter Names and Links** (URLs to each fighter’s profile page)
-- **Winner** (if determined; otherwise, it indicates a "Draw" or “No Contest”)
+- **Winner** (if determined; otherwise, it indicates a `Draw` or `No Contest`)
 - **Method of Victory** (e.g., KO/TKO, Decision, Submission)
 - **Round and Time of Victory** (if available)
 - **Weight Class** (e.g., "Featherweight Bout")
