@@ -135,7 +135,6 @@ def main():
 
 ---
 
-# UFCStats Web Scraper
 
 This program scrapes data from the UFCStats website to extract detailed event, fight, and fighter statistics. It collects data such as fight results, significant strikes, fighter attributes, and outputs it into a CSV file for easy analysis.
 
