@@ -156,7 +156,7 @@ The program starts by requesting and parsing the UFCStats homepage for completed
 ### Event: UFC Fight Night: Cannonier vs. Borralho
 - **Name**: UFC Fight Night: Cannonier vs. Borralho
 - **Event Link**: http://www.ufcstats.com/event-details/be8ad887e4d674b0
-- **Date**: 08-24-2024
+- **Date**: 08-24-2024 00:00:00
 - **Location**: Las Vegas, Nevada, USA
     
 
@@ -169,6 +169,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'
 }
 
+
 def get_page_content(url):
     """
     Retrieve and parse HTML content from a specified URL using a user-defined number of retries.
@@ -180,7 +181,6 @@ def get_page_content(url):
     Returns:
     - BeautifulSoup: Parsed HTML of the page, or None if the request fails after retries.
     """
-
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
@@ -214,7 +214,7 @@ def extract_event_info(event_element):
     event_date_str = event_element.find_next('span', class_='b-statistics__date').text.strip()
     event_location_str = event_element.find_next('td', class_='b-statistics__table-col b-statistics__table-col_style_big-top-padding').text.strip()
     
-    # Format the date
+    # Format the date as datetime object
     formatted_date = parse_date(event_date_str)
     
     # Create the event info dictionary
@@ -342,7 +342,7 @@ def scrape_fight_info(fight_info):
         extract_round_data(row_fighter_data, row_strikes_data, fight_info['fighter_a']['name'], fight_info['fighter_b']['name'], fight_info)
 
     print(f"\nFight Summary for {fight_info['fighter_a']['name']} vs {fight_info['fighter_b']['name']}:")
-    print(f"Winner: {fight_info['winner']}")
+    print(f"Winner: {fight_info['winner']}")  # Ensures 'NC' is printed for No Contests
     print(f"Method of Victory: {fight_info['method_of_victory']}")
     print(f"Round of Victory: {fight_info['round_of_victory']}")
     print(f"Time of Victory: {fight_info['time_in_ROV']}")
