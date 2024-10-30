@@ -8,10 +8,7 @@ This project provides a powerful tool to scrape and collect detailed UFC event, 
   - [2. Fight Details](#2-fight-details)
   - [3. Fighter Statistics](#3-fighter-statistics)
   - [4. Data Storage](#4-data-storage)
-- [Usage](#usage)
   - [Requirements](#requirements)
-  - [Execution](#execution)
-- [Notes](#notes)
 
 ## Project Functionality
 
@@ -31,11 +28,12 @@ Each event’s individual page is then accessed to retrieve additional fight-lev
 
 For each event, the script extracts detailed information on each fight, iterating over all fight entries in the event. The fight details include:
 - **Fighter Names and Links** (URLs to each fighter’s profile page)
-- **Winner** (if determined; otherwise, it indicates a draw or “No Contest”)
+- **Winner** (if determined; otherwise, it indicates a "Draw" or “No Contest”)
 - **Method of Victory** (e.g., KO/TKO, Decision, Submission)
 - **Round and Time of Victory** (if available)
 - **Weight Class** (e.g., "Featherweight Bout")
 - **Title Fight** (boolean indicating whether it was a title fight)
+- **Gender** (men or women)
 - **Fight Link** (URL to the fight details page)
 - **Detailed Round Information** (number of knockdowns, significant strikes, total strikes, takedowns, control time, strikes breakdown by body region, and more)
 
@@ -58,10 +56,6 @@ After gathering event, fight, and fighter details, the script compiles all the d
 
 The CSV structure allows users to easily load the data into data analysis tools (e.g., Python, R, Excel) for further examination.
 
-## Usage
-
-To use this program, follow these steps:
-
 ### Requirements
 
 The script requires the following Python packages:
@@ -69,8 +63,4 @@ The script requires the following Python packages:
 - `BeautifulSoup` from `bs4`: To parse and extract HTML content.
 - `datetime`: For managing date formats.
 - `csv`: To store collected data into a CSV format.
-
-Install these dependencies with:
-```bash
-pip install requests beautifulsoup4
 
