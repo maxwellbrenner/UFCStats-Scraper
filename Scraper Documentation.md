@@ -12,7 +12,7 @@
 - **Description**: Extracts information about a specific fight from a table row, including fight link, winner, method of victory, and fighter details (names and links).
 
 ### 4. `get_fight_link_and_winner(fight_row)`
-- **Description**: This function extracts the fight link, winner, and method of victory from the table row information. It includes additional handling for `No Contest` and `Draw` cases. If no fight link is available, the function defaults to `'N/A'`. If no winner is determined, it checks if the fight was a `Draw` or a `No Contest`. In cases where the fight is listed as a `Decision` but no winner is declared, the outcome defaults to `'Draw'`. For `No Contest` cases, both the winner and method of victory are set to `'NC'`.
+- **Description**: This function extracts the fight link, winner, and method of victory from the table row information. 
 
 ### 5. `extract_fighter_info(fighter_row)`
 - **Description**: Extracts basic information about two fighters (names and links) from a table row. It returns two dictionaries representing fighter A and fighter B, along with empty lists for rounds information.
