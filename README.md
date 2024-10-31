@@ -52,7 +52,7 @@ After gathering event, fight, and fighter details, the script compiles all the d
 - **Event Information**: (name, date, location)
 - **Fight Summary**: (winner, fight link, weight class, title fight, method of victory, etc.)
 - **Fighter Details**: (name, height, reach, date of birth)
-- **Round-by-Round Statistics**: (for up to 5 rounds, including metrics for knockdowns, strikes, takedowns, submissions, control time, and more)
+- **Round-by-Round Statistics**: (for up to 5 rounds, including metrics for knockdowns, strikes, takedowns, submissions, control time, ect.)
 
 The CSV structure allows users to easily load the data into data analysis tools (e.g., Python, R, Excel) for further examination.
 
