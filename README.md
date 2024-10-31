@@ -11,10 +11,10 @@ The script is structured to perform multiple levels of scraping, starting from e
 ### 1. Event Information
 
 The program begins by scraping the main [completed events page](http://www.ufcstats.com/statistics/events/completed?page=all), gathering the list of recent UFC events. It extracts:
-- **Event Name**: (e.g., "UFC 308: Topuria vs. Holloway")
+- **Event Name**: (e.g., "UFC Fight Night: Cannonier vs. Borralho")
 - **Event Link**: (URL to the event details page)
 - **Event Date**: (parsed as a `datetime` object)
-- **Event Location**: (e.g., "Abu Dhabi, UAE")
+- **Event Location**: (e.g., "Las Vegas, Nevada, USA")
 
 Each event’s individual page is then accessed to retrieve additional fight-level details.
 
