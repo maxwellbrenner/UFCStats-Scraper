@@ -1,5 +1,34 @@
 # UFCStats Web Scraper
 
+This program scrapes detailed event, fight, and fighter statistics from the UFCStats website, storing the data in a well-structured CSV.
+
+## Overview of the `main()` Function
+
+The `main()` function orchestrates the web scraping process by following these steps:
+
+1. **Fetch the Main Page**: It retrieves the main page that lists all completed UFC events using the `get_page_content()` function.
+
+2. **Parse Events**: It loops through the event elements (links to individual events) on the main page. For each event:
+   - The `extract_event_info()` function is called to gather the event's basic details (name, date, location) and to parse the event page.
+   
+3. **Parse Fights**: For each event, it retrieves the list of fights:
+   - The `extract_fight_info()` function extracts basic fight data such as fight link, winner, and fighter details from the event's fight table.
+   - This information is added to the `fights` list in the event's dictionary.
+
+4. **Scrape Detailed Fight and Fighter Information**: Once basic fight details are collected:
+   - The `scrape_fight_info()` function is called to scrape detailed fight data, such as round-by-round stats, methods of victory, and more.
+   - The `scrape_fighter_info()` function scrapes additional details for each fighter, including height, reach, and date of birth.
+
+5. **Store Events**: The completed event (with detailed fight data) is added to the `events_list`.
+
+6. **Write to CSV**: After processing all events and fights, the `write_to_csv()` function is called to save the results into a CSV file.
+
+7. **Error Handling**: The function includes basic error handling to ensure that if an error occurs, the data collected so far is still written to the CSV.
+
+By the end of the `main()` function, a detailed list of events and fight data is collected and written to a CSV file.
+
+---
+
 ## Function Descriptions (Ordered by Execution in `main()`)
 
 ### 1. `get_page_content(url)`
@@ -50,94 +79,6 @@
 
 ---
 
-## Overview of the `main()` Function
-
-The `main()` function orchestrates the web scraping process by following these steps:
-
-1. **Fetch the Main Page**: It retrieves the main page that lists all completed UFC events using the `get_page_content()` function.
-
-2. **Parse Events**: It loops through the event elements (links to individual events) on the main page. For each event:
-   - The `extract_event_info()` function is called to gather the event's basic details (name, date, location) and to parse the event page.
-   
-3. **Parse Fights**: For each event, it retrieves the list of fights:
-   - The `extract_fight_info()` function extracts basic fight data such as fight link, winner, and fighter details from the event's fight table.
-   - This information is added to the `fights` list in the event's dictionary.
-
-4. **Scrape Detailed Fight and Fighter Information**: Once basic fight details are collected:
-   - The `scrape_fight_info()` function is called to scrape detailed fight data, such as round-by-round stats, methods of victory, and more.
-   - The `scrape_fighter_info()` function scrapes additional details for each fighter, including height, reach, and date of birth.
-
-5. **Store Events**: The completed event (with detailed fight data) is added to the `events_list`.
-
-6. **Write to CSV**: After processing all events and fights, the `write_to_csv()` function is called to save the results into a CSV file.
-
-7. **Error Handling**: The function includes basic error handling to ensure that if an error occurs, the data collected so far is still written to the CSV.
-
-By the end of the `main()` function, a detailed list of events and fight data is collected and written to a CSV file.
-
-```python
-def main():
-    """
-    Main function to orchestrate the web scraping process, including retrieving event data,
-    scraping fight details and individual fighter stats, and finally writing all data to a CSV file.
-    
-    Returns:
-    - list: List of dictionaries with detailed event and fight information (used for writing to CSV).
-    """
-    try:
-        # URL of the main page listing all completed events
-        url = 'http://www.ufcstats.com/statistics/events/completed?page=all'
-        soup = get_page_content(url)
-
-        # Check if the main page content was successfully retrieved
-        if soup:
-            event_elements = soup.find_all('a', class_='b-link b-link_style_black')
-            events_list = []
-
-            # Iterate over each event link found on the main page
-            for event_element in event_elements:
-                event_info, event_soup = extract_event_info(event_element)
-
-                # Check if the event page content was successfully retrieved
-                if event_soup:
-                    fight_rows = event_soup.find_all('tr', class_='b-fight-details__table-row')[1:]  # Skip the header row which contains a future event
-
-                    # Iterate over fight rows and extract fight information
-                    for fight_row in fight_rows:
-                        fight_info = extract_fight_info(fight_row)
-                        event_info['fights'].append(fight_info)
-
-                    events_list.append(event_info)
-
-            # Process each event and associated fights to scrape detailed information
-            for event_info in events_list:
-                print(f"\nEvent: {event_info['name']}")
-                print(f"Event Link: {event_info['link']}")
-                print(f"Date: {event_info['date']}")
-                print(f"Location: {event_info['location']}")
-
-                for fight_info in event_info['fights']:
-                    scrape_fight_info(fight_info)
-                    scrape_fighter_info(fight_info['fighter_a'])
-                    scrape_fighter_info(fight_info['fighter_b'])
-
-        # Return the populated event list, useful for unit testing or further processing
-        return events_list
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        # Always attempt to save data to CSV, even if an error occurs
-        if events_list:
-            print("Saving data to CSV due to an error or normal completion.")
-            write_to_csv(events_list)
-```
-
-
----
-
-
-This program scrapes data from the UFCStats website to extract detailed event, fight, and fighter statistics. It collects data such as fight results, significant strikes, fighter attributes, and outputs it into a CSV file for easy analysis.
 
 ## Starting Point of the Program
 
@@ -158,80 +99,6 @@ The program starts by requesting and parsing the UFCStats homepage for completed
 - **Event Link**: http://www.ufcstats.com/event-details/be8ad887e4d674b0
 - **Date**: 08-24-2024 00:00:00
 - **Location**: Las Vegas, Nevada, USA
-    
-
-## Code References
-- `get_page_content(url)`: Fetches the HTML page for completed UFC events.
-
-```python
-# Define headers for the HTTP request
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'
-}
-
-
-def get_page_content(url):
-    """
-    Retrieve and parse HTML content from a specified URL using a user-defined number of retries.
-    Returns a BeautifulSoup object if successful, otherwise None.
-
-    Parameters:
-    - url (str): The URL from which to fetch content.
-
-    Returns:
-    - BeautifulSoup: Parsed HTML of the page, or None if the request fails after retries.
-    """
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return BeautifulSoup(response.content, 'html.parser')
-        else:
-            print(f"Failed to retrieve the page. Status code: {response.status_code}")
-    except requests.RequestException as e:
-        print(f"Request failed: {e}")
-
-    print("All attempts failed. Returning None.")
-    return None
-```
-#
-- `extract_event_info(event_element)`: Extracts information about each event (name, link, date, and location).
-
-```python
-def extract_event_info(event_element):
-    """
-    Extracts basic information for a given event element including name, link, date, and location.
-    
-    Parameters:
-    - event_element (bs4.element.Tag): The BeautifulSoup tag for the event.
-
-    Returns:
-    - dict: A dictionary containing event name, link, formatted date, location, and an empty list for fights.
-    """
-    event_name = event_element.text.strip()
-    event_link = event_element['href']
-    
-    # Extract date and location information
-    event_date_str = event_element.find_next('span', class_='b-statistics__date').text.strip()
-    event_location_str = event_element.find_next('td', class_='b-statistics__table-col b-statistics__table-col_style_big-top-padding').text.strip()
-    
-    # Format the date as datetime object
-    formatted_date = parse_date(event_date_str)
-    
-    # Create the event info dictionary
-    event_info = {
-        'name': event_name,
-        'link': event_link,
-        'date': formatted_date,
-        'location': event_location_str,
-        'fights': []  # Empty list to store fight information
-    }
-    
-    # Retrieve event page content
-    event_soup = get_page_content(event_info['link'])
-    
-    return event_info, event_soup
-```
-
 
 ### 2. Extracting Event Details
 
