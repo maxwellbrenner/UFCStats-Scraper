@@ -34,50 +34,64 @@ By the end of the `main()` function, a detailed list of events and fight data is
 ## Function Descriptions -- Ordered by Execution in `main()`
 
 ### 1. `get_page_content(url)`
-- **Description**: This function retrieves and parses the HTML content from the given URL using the `requests` library. It returns a BeautifulSoup object if the request is successful, otherwise, it prints an error message and returns `None`.
+- **Description**: This function retrieves and parses the HTML content from the given URL using the `requests` library.
+- **Returns**: A BeautifulSoup object if the request is successful, otherwise `None`.
 
 ### 2. `extract_event_info(event_element)`
-- **Description**: Extracts basic information for an event, including the event name, link, date, and location. Returns an event dictionary and the parsed content (soup) of the event page.
+- **Description**: Extracts basic information for an event, including the event name, link, date, and location.
+- **Returns**: A dictionary containing event details and the parsed content (soup) of the event page.
 
 ### 3. `extract_fight_info(fight_row)`
 - **Description**: Extracts information about a specific fight from a table row, including fight link, winner, method of victory, and fighter details (names and links).
+- **Returns**: A dictionary containing fight link, winner, method of victory, and fighter details.
 
 ### 4. `get_fight_link_and_winner(fight_row)`
-- **Description**: This function extracts the fight link, winner, and method of victory from the table row information. 
+- **Description**: This function extracts the fight link, winner, and method of victory from the table row information.
+- **Returns**: A tuple containing (fight link, winner, and method of victory).
 
 ### 5. `extract_fighter_info(fighter_row)`
-- **Description**: Extracts basic information about two fighters (names and links) from a table row. It returns two dictionaries representing fighter A and fighter B, along with empty lists for rounds information.
+- **Description**: Extracts basic information about two fighters (names and links) from a table row.
+- **Returns**: Two dictionaries representing fighter A and fighter B, along with empty lists for rounds information.
 
 ### 6. `scrape_fight_info(fight_info)`
-- **Description**: Scrapes detailed fight information from the fight page, including rounds and results. Updates the `fight_info` dictionary with this data, including weight class, title fight status, gender, and round-specific information for both fighters.
+- **Description**: Scrapes detailed fight information from the fight page, including rounds and results. Updates the `fight_info` dictionary with data like weight class, title fight status, gender, and round-specific information for both fighters.
+- **Returns**: None, as it updates `fight_info` in place.
 
 ### 7. `extract_victory_and_round_data(fight_soup, fight_info)`
-- **Description**: Extracts the method of victory, round of victory, time of victory, time format, and referee data from the fight page and updates the `fight_info` dictionary.
+- **Description**: Extracts the method of victory, round of victory, time of victory, time format, and referee data from the fight page, updating the `fight_info` dictionary.
+- **Returns**: None, as it modifies `fight_info` in place.
 
 ### 8. `extract_round_data(row_fighter_data, row_strikes_data, fighter_a_name, fighter_b_name, fight_info)`
-- **Description**: Extracts round-by-round data for both fighters, including fighter stats and strike data, and updates the `fight_info` dictionary with this information.
+- **Description**: Extracts round-by-round data for both fighters, including fighter stats and strike data, and updates the `fight_info` dictionary.
+- **Returns**: None, as it updates `fight_info` in place.
 
 ### 9. `extract_fighter_data(row, index)`
-- **Description**: Extracts detailed fight statistics for a fighter, such as knockdowns, significant strikes, total strikes, takedowns, submission attempts, reversals, and control time. It returns this data in a dictionary for a specified fighter (index 0 for fighter A, 1 for fighter B).
+- **Description**: Extracts detailed fight statistics for a fighter, such as knockdowns, significant strikes, total strikes, takedowns, submission attempts, reversals, and control time.
+- **Returns**: A dictionary containing the fighter's statistics.
 
 ### 10. `extract_strikes_data(row, index)`
-- **Description**: Extracts detailed strike data for a fighter from a table row. It includes head, body, leg, distance, clinch, and ground strikes for a specified fighter (index 0 for fighter A, 1 for fighter B). It returns a dictionary containing these details.
+- **Description**: Extracts detailed strike data for a fighter from a table row, including head, body, leg, distance, clinch, and ground strikes.
+- **Returns**: A dictionary with various strike details for the specified fighter.
 
 ### 11. `scrape_fighter_info(fighter_info)`
 - **Description**: Scrapes individual fighter details from the fighter’s page, including height, reach, and date of birth, and updates the `fighter_info` dictionary with these attributes.
+- **Returns**: None, as it updates `fighter_info` in place.
 
 ### 12. `convert_to_inches(height_info)`
-- **Description**: Converts a height string from the format "feet'inches"" into inches (e.g., "6'0"" to 72 inches). If the conversion fails, it returns `'N/A'` for both the original format and inches.
+- **Description**: Converts a height string from the format "feet'inches"" into inches (e.g., "6'0"" to 72 inches). If the conversion fails, it returns `'N/A'`.
+- **Returns**: A dictionary with both the original height format and converted height in inches.
 
 ### 13. `convert_to_numerical_date(date_str)`
-- **Description**: Converts a date string in the format `'%b %d, %Y'` (e.g., `'Jan 01, 2020'`) into a numerical date in the format `'%m-%d-%Y'`. Returns `'N/A'` if the conversion fails.
+- **Description**: Converts a date string in the format `'%b %d, %Y'` (e.g., `'Jan 01, 2020'`) into a numerical date in the format `'%m-%d-%Y'`.
+- **Returns**: The converted date as a string or `'N/A'` if the conversion fails.
 
 ### 14. `parse_date(date_str)`
 - **Description**: This function converts a date string into the format `'MM-DD-YYYY'`. If the input is `'N/A'`, it returns `'N/A'`. If the conversion fails, it catches the error and returns `'N/A'`.
-  
+- **Returns**: A string representing the converted date or `'N/A'` if conversion fails.
+
 ### 15. `write_to_csv(events_list)`
 - **Description**: Writes the collected event and fight data, including detailed round-by-round statistics, to a CSV file. Each row in the CSV represents a fight, and columns include event details, fighter statistics, and round information.
-
+- **Returns**: None, as it writes directly to a CSV file.
 
 ---
 
