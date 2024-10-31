@@ -2,6 +2,8 @@
 
 This program scrapes detailed event, fight, and fighter statistics from the UFCStats website, storing the data in a well-structured CSV.
 
+![README Banner](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner.png)
+
 ## Overview of the `main()` Function
 
 The `main()` function orchestrates the web scraping process by following these steps:
