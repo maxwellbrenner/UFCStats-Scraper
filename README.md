@@ -33,7 +33,7 @@ For each event, the script extracts detailed information on each fight, iteratin
 - **Round and Time of Victory**: (if available)
 - **Weight Class**: (e.g., "Featherweight Bout")
 - **Title Fight**: (boolean indicating whether it was a title fight)
-- **Gender**: (men or women)
+- **Gender**: (men or women's fight)
 - **Fight Link**: (URL to the fight details page)
 - **Detailed Round Information**: (number of knockdowns, significant strikes, total strikes, takedowns, control time, strikes breakdown by body region, and more)
 
