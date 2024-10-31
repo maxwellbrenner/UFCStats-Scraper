@@ -50,7 +50,7 @@ These attributes, when combined with fight details, provide a holistic view of e
 
 After gathering event, fight, and fighter details, the script compiles all the data into a CSV file named `event_masterlist.csv`. This file contains detailed columns for each piece of data, including:
 - **Event Information**: (name, date, location)
-- **Fight Summary**: (winner, fight link, weight class, title fight, method of victory, etc.)
+- **Fight Summary**: (winner, fight link, weight class, title fight, method of victory, etc)
 - **Fighter Details**: (name, height, reach, date of birth)
 - **Round-by-Round Statistics**: (for up to 5 rounds, including metrics for knockdowns, strikes, takedowns, submissions, control time, ect.)
 
