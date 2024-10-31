@@ -1,7 +1,5 @@
 # UFC Stats Scraper
 
-This project provides software to scrape detailed UFC event, fight, and fighter statistics from the [UFC Stats](http://www.ufcstats.com/) archive. It compiles this information into a well-structured CSV file, facilitating data analysis and access to historical UFC statistics.
-
 ![README Banner](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner.png)
 
 ## Table of Contents
@@ -13,6 +11,8 @@ This project provides software to scrape detailed UFC event, fight, and fighter 
   - [Requirements](#requirements)
 
 ## Project Functionality
+
+This project provides software to scrape detailed UFC event, fight, and fighter statistics from the [UFC Stats](http://www.ufcstats.com/) archive. It compiles this information into a well-structured CSV file.
 
 The script is structured to perform multiple levels of scraping, starting from event details down to fight- and fighter-specific statistics. This hierarchy enables detailed analysis and insight into each event, each fight, and each competitor’s performance.
 
