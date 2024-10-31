@@ -2,6 +2,8 @@
 
 This project provides software to scrape detailed UFC event, fight, and fighter statistics from the [UFC Stats](http://www.ufcstats.com/) archive. It compiles this information into a well-structured CSV file, facilitating data analysis and access to historical UFC statistics.
 
+![UFCStats README Banner](https://github.com/maxwellbrenner/UFCStats-Scraper/blob/main/UFCStats%20-%20README%20Banner.png?raw=true)
+
 ## Table of Contents
 - [Project Functionality](#project-functionality)
   - [1. Event Information](#1-event-information)
