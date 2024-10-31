@@ -2,14 +2,6 @@
 
 ![README Banner](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner.png)
 
-## Table of Contents
-- [Project Functionality](#project-functionality)
-  - [1. Event Information](#1-event-information)
-  - [2. Fight Details](#2-fight-details)
-  - [3. Fighter Statistics](#3-fighter-statistics)
-  - [4. Data Storage](#4-data-storage)
-  - [Requirements](#requirements)
-
 ## Project Functionality
 
 This project provides software to scrape detailed UFC event, fight, and fighter statistics from the [UFC Stats](http://www.ufcstats.com/) archive. It compiles this information into a well-structured CSV file.
