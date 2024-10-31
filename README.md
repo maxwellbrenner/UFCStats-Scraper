@@ -2,7 +2,6 @@
 
 ![README Banner](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner.png)
 
-#
 
 ## Project Functionality
 
