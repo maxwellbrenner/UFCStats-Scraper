@@ -1,6 +1,6 @@
 # UFC Stats Scraper
 
-![README Banner](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner.png)
+![README Banner New](images%20(UFCStats.com)/UFCStats%20-%20README%20Banner%20New.png)
 
 ## Project Functionality
 
