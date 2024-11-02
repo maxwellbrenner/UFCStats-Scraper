@@ -96,7 +96,7 @@ By the end of the `main()` function, a detailed list of events and fight data is
 ---
 
 
-## Starting Point of the Program
+## Execution Flow
 
 The program begins by executing the `main()` function. This function handles the overall flow, retrieving the main event page, scraping fight data for each event, and writing the output to a CSV file. Below is a step-by-step breakdown of the process:
 
