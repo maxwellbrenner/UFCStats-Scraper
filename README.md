@@ -14,7 +14,7 @@ The program workflow is as follows:
 
 The resulting output is a cleaned and analysis-ready CSV file with detailed information on events, fights, and fighters.
 
-## Scraping Program - `UFC Stats Scraper`
+## Scraping Program - `(1) UFC Stats Scraper`
 
 ### 1. Event Information
 
@@ -58,9 +58,9 @@ After gathering event, fight, and fighter details, the script compiles all the d
 
 The CSV structure allows users to easily load the data into data analysis tools (e.g., Python, R, Excel) for further examination.
 
-## 2. Data Cleaning Program - `Intial Masterlist Cleaning`
+## 2. Data Cleaning Program - `(2) Cleaning event_masterlist`
 
-fter the scraper runs and generates `event_masterlist.csv`, the `Intial Masterlist Cleaning` program should be run to further clean and structure the data.
+fter the scraper runs and generates `event_masterlist.csv`, the `(2) Cleaning event_masterlist` program should be run to further clean and structure the data.
 
 ### Cleaning Steps
 
