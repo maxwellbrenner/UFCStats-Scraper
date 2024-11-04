@@ -9,8 +9,8 @@ This project provides software to scrape detailed UFC event, fight, and fighter 
 The script is structured to perform multiple levels of scraping, starting from event details down to fight- and fighter-specific statistics. This hierarchy enables detailed analysis and insight into each event, each fight, and each competitor’s performance.
 
 The program workflow is as follows:
-1. **Scraping**: First, the `UFC Stats Scraper` collects event, fight, and fighter data into a structured CSV file -> `event_masterlist.csv`
-3. **Data Cleaning**: After scraping, a separate cleaning program (`Intial Masterlist Cleaning`) refines this data by standardizing column formats, handling missing values, and ensuring consistency.
+1. **Scraping**: First, the `(1) UFC Stats Scraper` collects event, fight, and fighter data into a structured CSV file -> `event_masterlist.csv`
+3. **Data Cleaning**: After scraping, a separate cleaning program (`(2) Cleaning event_masterlist`) refines this data by standardizing column formats, handling missing values, and ensuring consistency.
 
 The resulting output is a cleaned and analysis-ready CSV file with detailed information on events, fights, and fighters.
 
