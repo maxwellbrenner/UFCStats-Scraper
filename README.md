@@ -60,7 +60,7 @@ The CSV structure allows users to easily load the data into data analysis tools 
 
 ## 2. Data Cleaning Program - `(2) Cleaning event_masterlist`
 
-fter the scraper runs and generates `event_masterlist.csv`, the `(2) Cleaning event_masterlist` program should be run to further clean and structure the data.
+After the scraper runs and generates `event_masterlist.csv`, the `(2) Cleaning event_masterlist` program should be run to further clean and structure the data.
 
 ### Cleaning Steps
 
