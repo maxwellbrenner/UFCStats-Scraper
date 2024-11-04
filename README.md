@@ -69,7 +69,7 @@ The cleaning program standardizes and structures the data by performing the foll
 #### 1. Clean Weight Class
 
 The `weightclass` column is cleaned to ensure consistency. This process:
-- Maps keywords to a predefined list of valid weight classes (e.g., “fly” becomes “Flyweight”).
+- Maps keywords to a predefined list of valid weight classes (e.g., “fly” becomes `“Flyweight”`).
 - Any unrecognized entries are replaced with `NaN`.
 
 #### 2. Handle No Contests and Draws
