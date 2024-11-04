@@ -1,5 +1,9 @@
 # Cleaning `event_masterlist`
 
+After scraping, a separate cleaning program `(2) Cleaning event_masterlist` refines this data by standardizing column formats, handling missing values, and ensuring consistency.
+
+The resulting output is a cleaned and analysis-ready CSV file with detailed information on events, fights, and fighters.
+
 ## Overview of the `main()` Function
 
 The `main()` function in the `(2) Cleaning event_masterlist` script processes and cleans the raw event data from `event_masterlist.csv`, preparing it for analysis. 
