@@ -1,3 +1,5 @@
+# Cleaning `event_masterlist`
+
 ## Overview of the `main()` Function
 
 The `main()` function in the `(2) Cleaning event_masterlist` script processes and cleans the raw event data from `event_masterlist.csv`, preparing it for analysis. 
