@@ -10,7 +10,7 @@ The script is structured to perform multiple levels of scraping, starting from e
 
 The program workflow is as follows:
 1. **Scraping**: First, the `(1) UFC Stats Scraper` collects event, fight, and fighter data into a structured CSV file -> `event_masterlist.csv`
-3. **Data Cleaning**: After scraping, a separate cleaning program `(2) Cleaning event_masterlist` refines this data by standardizing column formats, handling missing values, and ensuring consistency.
+3. **Data Cleaning**: After scraping, a separate cleaning program `(2) Cleaning event_masterlist` refines this data by standardizing column formats, handling missing values, and ensuring consistency -> `cleaned_event_masterlist.csv`
 
 The resulting output is a cleaned and analysis-ready CSV file with detailed information on events, fights, and fighters.
 
