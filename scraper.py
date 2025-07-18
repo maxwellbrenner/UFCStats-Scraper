@@ -1578,10 +1578,43 @@ def get_latest_event_date() -> Optional[date]:
     conn.close()
     return row[0] if row and row[0] else None
 
+
 # -----------------------------------------------------------------------
 # MAIN
 # -----------------------------------------------------------------------
+
+"""
+This module defines the `main()` function, which orchestrates the scraping of UFC event data from ufcstats.com, processes fight details, 
+and stores the results in a MySQL database and CSV file. It integrates with the `Events` class and database utilities to manage the scraping workflow.
+
+Key components:
+- `main()`: The primary function that initializes the scraper, fetches new events, processes fight details, and handles data storage.
+- Uses environment variables for database configuration via a `.env` file.
+- Integrates with `Events` class for event scraping and `database` module for MySQL connectivity.
+- Handles errors gracefully and ensures data is saved to CSV even on failure.
+
+The script is designed to be executed as the entry point for the UFC Stats Scraper application.
+"""
+
 def main():
+    """
+    Runs the UFCStats scraper, fetching new events, processing fight details, and storing results in a MySQL database and CSV file.
+
+    Functionality:
+        - Loads environment variables for database configuration from a .env file.
+        - Initializes an Events manager and retrieves the latest event date from the database.
+        - Scrapes new UFC events after the latest date, including fight and round statistics.
+        - Stores scraped data in a MySQL database and exports it to a CSV file ('UFCStats.csv').
+        - Handles database and general errors gracefully, ensuring data is saved to CSV even on failure.
+
+    Raises:
+        ValueError: If required database credentials (user or password) are missing in the .env file.
+        mysql.connector.Error: If a database operation fails.
+        Exception: For other unexpected errors during execution.
+
+    Returns:
+        None
+    """
     # Initialize events_manager outside try block to avoid UnboundLocalError
     events_manager = Events()
 
