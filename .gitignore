@@ -1,5 +1,28 @@
-# Generated Files
-UFCStats.csv
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+
+# Environment variables
+.env
+
+# Output files
+ufc_fights.csv
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
