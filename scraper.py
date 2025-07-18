@@ -1,6 +1,7 @@
 import concurrent.futures
 import csv
 import mysql.connector
+from mysql.connector import Error
 import random
 import re
 import requests
@@ -13,10 +14,6 @@ from typing import Dict, List, Optional, Tuple
 from urllib3.exceptions import NameResolutionError
 import os
 from dotenv import load_dotenv
-import mysql.connector
-from mysql.connector import Error
-import os
-
 
 # -----------------------------------------------------------------------
 #  WEB FETCHING UTILITIES
