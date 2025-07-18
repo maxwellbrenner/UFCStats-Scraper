@@ -13,7 +13,6 @@ from threading import Lock
 from typing import Dict, List, Optional, Tuple
 from urllib3.exceptions import NameResolutionError
 import os
-from dotenv import load_dotenv
 
 # -----------------------------------------------------------------------
 #  WEB FETCHING UTILITIES
@@ -1471,21 +1470,21 @@ The module integrates with the MySQL database to support data storage for the sc
 """
 
 def connect_to_mysql(
-    host: str = os.getenv('DB_HOST', 'localhost'),
-    user: str = os.getenv('DB_USER'),
-    password: str = os.getenv('DB_PASSWORD'),
-    database: str = os.getenv('DB_NAME', 'UFCStats'),
-    auth_plugin: str = os.getenv('DB_AUTH_PLUGIN', 'mysql_native_password')
+    host: str = 'localhost',
+    user: str = None,
+    password: str = None,
+    database: str = 'UFCStats',
+    auth_plugin: str = 'mysql_native_password'
 ) -> mysql.connector.connection.MySQLConnection:
     """
     Connect to a MySQL database, creating it and its schema if it does not exist.
 
     Args:
-        host (str): The database host.
-        user (str): The database user.
-        password (str): The user's password.
-        database (str): The database name.
-        auth_plugin (str): The authentication plugin to use.
+        host (str): The database host. Defaults to 'localhost'.
+        user (str): The database user. Must be provided.
+        password (str): The user's password. Must be provided.
+        database (str): The database name. Defaults to 'UFCStats'.
+        auth_plugin (str): The authentication plugin to use. Defaults to 'mysql_native_password'.
 
     Returns:
         mysql.connector.connection.MySQLConnection: A MySQL connection object to the specified database.
@@ -1493,11 +1492,11 @@ def connect_to_mysql(
     Raises:
         mysql.connector.Error: If the connection or database creation fails.
         FileNotFoundError: If the create_database.sql file is not found.
-        ValueError: If required environment variables (DB_USER, DB_PASSWORD) are missing.
+        ValueError: If required parameters (user, password) are missing.
     """
-    # Validate required environment variables
+    # Validate required parameters
     if not user or not password:
-        raise ValueError("DB_USER and DB_PASSWORD environment variables must be set.")
+        raise ValueError("Database user and password must be provided.")
 
     try:
         # Connect to MySQL server without specifying a database to check existence
@@ -1586,7 +1585,6 @@ and stores the results in a MySQL database and CSV file. It integrates with the 
 
 Key components:
 - `main()`: The primary function that initializes the scraper, fetches new events, processes fight details, and handles data storage.
-- Uses environment variables for database configuration via a `.env` file.
 - Integrates with `Events` class for event scraping and `database` module for MySQL connectivity.
 - Handles errors gracefully and ensures data is saved to CSV even on failure.
 
@@ -1598,14 +1596,14 @@ def main():
     Runs the UFCStats scraper, fetching new events, processing fight details, and storing results in a MySQL database and CSV file.
 
     Functionality:
-        - Loads environment variables for database configuration from a .env file.
+        - Prompts the user for database credentials (host, user, password, database name, auth plugin).
         - Initializes an Events manager and retrieves the latest event date from the database.
         - Scrapes new UFC events after the latest date, including fight and round statistics.
         - Stores scraped data in a MySQL database and exports it to a CSV file ('UFCStats.csv').
         - Handles database and general errors gracefully, ensuring data is saved to CSV even on failure.
 
     Raises:
-        ValueError: If required database credentials (user or password) are missing in the .env file.
+        ValueError: If required database credentials are missing or invalid.
         mysql.connector.Error: If a database operation fails.
         Exception: For other unexpected errors during execution.
 
@@ -1616,23 +1614,21 @@ def main():
     events_manager = Events()
 
     try:
-        # Load environment variables from .env file
-        load_dotenv()
-
-        # Database connection parameters from environment variables
+        # Prompt user for database credentials
+        print("Enter MySQL database connection details:")
         db_config = {
-            'host': os.getenv('DB_HOST', 'localhost'),
-            'user': os.getenv('DB_USER'),
-            'password': os.getenv('DB_PASSWORD'),
-            'database': os.getenv('DB_NAME', 'UFCStats'),
-            'auth_plugin': os.getenv('DB_AUTH_PLUGIN', 'mysql_native_password')
+            'host': input("Host (default: localhost): ") or 'localhost',
+            'user': input("Username: "),
+            'password': input("Password: "),
+            'database': input("Database name (default: UFCStats): ") or 'UFCStats',
+            'auth_plugin': input("Authentication plugin (default: mysql_native_password): ") or 'mysql_native_password'
         }
 
-        # Validate required environment variables
-        required_vars = ['DB_USER', 'DB_PASSWORD']
-        missing_vars = [var for var in required_vars if not os.getenv(var)]
+        # Validate required credentials
+        required_vars = ['user', 'password']
+        missing_vars = [key for key in required_vars if not db_config[key]]
         if missing_vars:
-            raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
+            raise ValueError(f"Missing required database credentials: {', '.join(missing_vars)}")
 
         # Connect to MySQL and get latest event date
         conn = connect_to_mysql(**db_config)
@@ -1682,6 +1678,6 @@ def main():
     finally:
         if 'conn' in locals():
             conn.close()
-            
+
 if __name__ == "__main__":
     main()
