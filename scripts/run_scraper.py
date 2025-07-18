@@ -83,7 +83,7 @@ def create_database_if_not_exists(db_config):
         if 'conn' in locals():
             conn.close()
 
-def main() -> None:
+def main():
     """
     Runs the UFCStats scraper, creating the database if it doesn't exist, fetching new events, processing fight details, and storing results in a MySQL database and CSV file.
 
