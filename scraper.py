@@ -1732,7 +1732,7 @@ def main():
                 # Save to database
                 events_manager.to_sql(**db_config)
                 # Save to CSV
-                events_manager.to_csv("ufc_fights.csv")
+                events_manager.to_csv("UFCStats.csv")
                 print("[INFO] Data saved successfully. Exiting.")
                 return  # Exit after saving
             scrape_time = time.time() - start_time
