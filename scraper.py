@@ -1556,7 +1556,7 @@ def connect_to_mysql(
         print(f"Unexpected error during database setup: {e}")
         raise
 
-def get_latest_event_date() -> Optional[date]:
+def get_latest_event_date(conn) -> Optional[date]:
     """
     Retrieve the date of the most recent event from the event table.
 
@@ -1566,7 +1566,6 @@ def get_latest_event_date() -> Optional[date]:
     Raises:
         mysql.connector.Error: If the database query fails.
     """
-    conn = connect_to_mysql()
     cursor = conn.cursor()
     cursor.execute("SELECT MAX(date) FROM event")
     row = cursor.fetchone()
@@ -1632,7 +1631,7 @@ def main():
 
         # Connect to MySQL and get latest event date
         conn = connect_to_mysql(**db_config)
-        latest_date = get_latest_event_date()  # No parameters needed
+        latest_date = get_latest_event_date(conn)
         
         # Populate events
         events_manager.create_events(start_date=latest_date)
