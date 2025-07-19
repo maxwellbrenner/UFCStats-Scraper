@@ -148,8 +148,7 @@ def fetch_parallel(urls: List[str], max_workers: int = 10) -> Dict[str, Optional
 #  EVENT
 # -----------------------------------------------------------------------
 
-"""Event model for the UFC Stats Scraper.
-
+"""
 This module defines the `Event` class, which represents a UFC event and its associated fights. 
 It provides functionality to parse fight links from an event page, create `Fight` objects, and format event details for output.
 
