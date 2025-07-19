@@ -19,7 +19,7 @@ import os
 # -----------------------------------------------------------------------
 
 """
-This module provides functions to retrieve and parse HTML content from web pages, specifically for scraping UFC statistics from ufcstats.com. 
+Provides functions to retrieve and parse HTML content from web pages, specifically for scraping UFC statistics from ufcstats.com. 
 It includes thread-safe caching for Fighter objects, a global HTTP session for connection reuse, and parallel fetching capabilities using a thread pool.
 
 Key components:
@@ -149,7 +149,7 @@ def fetch_parallel(urls: List[str], max_workers: int = 10) -> Dict[str, Optional
 # -----------------------------------------------------------------------
 
 """
-This module defines the `Event` class, which represents a UFC event and its associated fights. 
+The `Event` class represents a UFC event and its associated fights. 
 It provides functionality to parse fight links from an event page, create `Fight` objects, and format event details for output.
 
 Key components:
@@ -157,8 +157,6 @@ Key components:
 - `parse_fight_links()`: Extracts fight detail URLs from the event page HTML.
 - `create_fights()`: Populates the fights list by fetching and parsing fight pages.
 - `to_string()`: Formats event details into a string for display.
-
-The class integrates with the `fetch` module for HTML retrieval and the `Fight` model for fight data processing.
 """
 
 @dataclass
@@ -265,7 +263,7 @@ class Event:
 # -----------------------------------------------------------------------
 
 """
-This module defines the `Events` class, which orchestrates the scraping of UFC events from ufcstats.com and manages data output to CSV and MySQL. 
+The `Events` class orchestrates the scraping of UFC events from ufcstats.com and manages data output to CSV and MySQL. 
 It provides functionality to parse event data, create `Event` objects, and store the collected data.
 
 Key components:
@@ -275,8 +273,6 @@ Key components:
 - `parse_event_link()`, `parse_event_name()`, `parse_event_date()`, `parse_event_location()`: Helper methods for parsing event attributes.
 - `to_csv()`: Writes event, fight, fighter, and round statistics to a CSV file.
 - `to_sql()`: Inserts scraped data into a MySQL database.
-
-The class integrates with the `fetch`, `database`, and `Event` modules for data retrieval and storage.
 """
 
 class Events:
@@ -648,7 +644,7 @@ class Events:
 # -----------------------------------------------------------------------
 
 """
-This module defines the `Fighter` class, which represents a UFC fighter and their attributes (name, height, reach, and date of birth). 
+The `Fighter` class represents a UFC fighter and their attributes (name, height, reach, and date of birth). 
 It provides functionality to parse fighter details from a fighter's page and cache the results for efficiency.
 
 Key components:
@@ -656,8 +652,6 @@ Key components:
 - `create_fighter()`: Populates the Fighter object by parsing fighter page HTML.
 - `parse_fighter_name()`, `parse_height()`, `parse_reach()`, `parse_dob()`: Helper methods for parsing specific attributes.
 - `to_string()`: Formats fighter details into a string for display.
-
-The class integrates with the `fetch` module for HTML retrieval and uses thread-safe caching to avoid redundant requests.
 """
 
 @dataclass(init=False)
@@ -810,7 +804,7 @@ class Fighter:
 # -----------------------------------------------------------------------
 
 """
-This module defines the `RoundStats` class, which represents per-fighter statistics for a single round in a UFC fight. 
+The `RoundStats` class represents per-fighter statistics for a single round in a UFC fight. 
 It provides functionality to parse performance metrics from fight page HTML table rows.
 
 Key components:
@@ -820,7 +814,7 @@ Key components:
 - `split_x_of_y()`, `parse_control_time_to_seconds()`, `to_int()`, `get_text()`: Helper methods for parsing data.
 - `to_string()`: Formats round statistics into a string for display.
 
-The class processes HTML table rows to extract detailed fight statistics for integration with the `Round` model.
+The class processes HTML table rows to extract detailed fight statistics for integration with the `Round` class.
 """
 
 @dataclass(init=False)
@@ -1063,14 +1057,14 @@ class RoundStats:
 # -----------------------------------------------------------------------
 
 """
-This module defines the `Round` class, which represents a single round in a UFC fight, including per-fighter statistics. 
+The `Round` class represents a single round in a UFC fight, including per-fighter statistics. 
 It provides functionality to parse round-specific data from fight page HTML and assign `RoundStats` objects for each fighter.
 
 Key components:
 - `Round`: A dataclass representing a UFC fight round with attributes for round number and fighter statistics.
 - `create_round()`: Populates the Round object by parsing fight page HTML and creating RoundStats objects for both fighters.
 
-The class integrates with the `RoundStats` model for statistics parsing and relies on fighter links to map statistics correctly.
+The class integrates with the `RoundStats` class for statistics parsing and relies on fighter links to map statistics correctly.
 """
 
 @dataclass
@@ -1150,7 +1144,7 @@ class Round:
 # --------------------------------------------------------
 
 """
-This module defines the `Fight` class, which represents a UFC fight and its associated details, including fighters, outcome, and round statistics. 
+The `Fight` class represents a UFC fight and its associated details, including fighters, outcome, and round statistics. 
 It provides functionality to parse fight details, create `Fighter` and `Round` objects, and format fight information for output.
 
 Key components:
@@ -1160,8 +1154,6 @@ Key components:
 - `create_rounds()`: Populates the rounds list with Round objects.
 - `parse_fight_details()`, `parse_winner()`, `parse_weight_class()`, etc.: Helper methods for parsing specific fight attributes.
 - `to_string()`: Formats fight details into a string for display.
-
-The class integrates with the `fetch`, `Fighter`, and `Round` modules for data retrieval and processing.
 """
 
 @dataclass(init=False)
@@ -1458,8 +1450,8 @@ class Fight:
 # -----------------------------------------------------------------------
 
 """
-This module provides functions to interact with the MySQL database used for storing UFC event data. 
-It includes utilities for establishing a database connection and retrieving the latest event date.
+Functions to interact with the MySQL database used for storing UFC event data. 
+Including utilities for establishing a database connection and retrieving the latest event date.
 
 Key components:
 - `connect_to_mysql()`: Establishes a connection to the MySQL database using specified credentials.
@@ -1578,7 +1570,7 @@ def get_latest_event_date(conn) -> Optional[date]:
 # -----------------------------------------------------------------------
 
 """
-This module defines the `main()` function, which orchestrates the scraping of UFC event data from ufcstats.com, processes fight details, 
+The `main()` function orchestrates the scraping of UFC event data from ufcstats.com, processes fight details, 
 and stores the results in a MySQL database and CSV file. It integrates with the `Events` class and database utilities to manage the scraping workflow.
 
 Key components:
